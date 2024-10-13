@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li onclick="showPage('welcome', event)">Welcome</li>
+            <li onclick="showPage('student-management', event)">Student Management</li>
+            <li onclick="showPage('class-management', event)">Class Management</li>
+            <li onclick="showPage('teacher-management', event)">Teacher Management</li>
+            <li onclick="showPage('admin-management', event)">Admin Management</li>
+        </ul>
+        <div class="sidebar-resizer"></div> <!-- 拖动手柄 -->
+    </div>
+
+    <div class="content">
+        <!-- 欢迎页面 -->
+        <div id="welcome" class="page active">
+            <h1>Welcome to Student Management System</h1>
+            <p>Use the sidebar to navigate through the system.</p>
+        </div>
+
+        <!-- 学生管理页面 -->
+        <div id="student-management" class="page">
+            <h1>Student Management</h1>
+            <button onclick="showAddStudentForm()">Add Student</button>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Class</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="student-table-body">
+                <!-- 学生数据将动态插入 -->
+                </tbody>
+            </table>
+            <div id="add-student-form" class="form" style="display:none;">
+                <h3>Add New Student</h3>
+                <label>Name:</label>
+                <input type="text" id="student-name">
+                <label>Age:</label>
+                <input type="number" id="student-age">
+                <label>Class:</label>
+                <input type="text" id="student-class">
+                <button onclick="addStudent()">Submit</button>
+            </div>
+        </div>
+
+        <!-- 班级管理页面 -->
+        <div id="class-management" class="page">
+            <h1>Class Management</h1>
+            <button onclick="showAddClassForm()">Add Class</button>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Class Name</th>
+                    <th>Teacher</th>
+                    <th>Students Count</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="class-table-body">
+                <!-- 班级数据将动态插入 -->
+                </tbody>
+            </table>
+            <div id="add-class-form" class="form" style="display:none;">
+                <h3>Add New Class</h3>
+                <label>Class Name:</label>
+                <input type="text" id="class-name">
+                <label>Teacher:</label>
+                <input type="text" id="class-teacher">
+                <button onclick="addClass()">Submit</button>
+            </div>
+        </div>
+
+        <!-- 教师管理页面 -->
+        <div id="teacher-management" class="page">
+            <h1>Teacher Management</h1>
+            <button onclick="showAddTeacherForm()">Add Teacher</button>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Class</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="teacher-table-body">
+                <!-- 教师数据将动态插入 -->
+                </tbody>
+            </table>
+            <div id="add-teacher-form" class="form" style="display:none;">
+                <h3>Add New Teacher</h3>
+                <label>Name:</label>
+                <input type="text" id="teacher-name">
+                <label>Subject:</label>
+                <input type="text" id="teacher-subject">
+                <label>Class:</label>
+                <input type="text" id="teacher-class">
+                <button onclick="addTeacher()">Submit</button>
+            </div>
+        </div>
+
+        <!-- 管理员管理页面 -->
+        <div id="admin-management" class="page">
+            <h1>Admin Management</h1>
+            <button onclick="showAddAdminForm()">Add Admin</button>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="admin-table-body">
+                <!-- 管理员数据将动态插入 -->
+                </tbody>
+            </table>
+            <div id="add-admin-form" class="form" style="display:none;">
+                <h3>Add New Admin</h3>
+                <label>Name:</label>
+                <input type="text" id="admin-name">
+                <label>Role:</label>
+                <input type="text" id="admin-role">
+                <label>Email:</label>
+                <input type="email" id="admin-email">
+                <button onclick="addAdmin()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
