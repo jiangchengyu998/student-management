@@ -3,6 +3,12 @@ const initialStudents = [
     { id: 1, name: "Alice", age: 20, class: "Class A" },
     { id: 2, name: "Bob", age: 22, class: "Class B" },
     { id: 3, name: "Charlie", age: 21, class: "Class A" },
+    { id: 4, name: "Charlie", age: 21, class: "Class A" },
+    { id: 5, name: "Charlie", age: 21, class: "Class A" },
+    { id: 6, name: "Charlie", age: 21, class: "Class A" },
+    { id: 7, name: "Charlie", age: 21, class: "Class A" },
+    { id: 8, name: "Charlie", age: 21, class: "Class A" },
+    { id: 9, name: "Charlie", age: 21, class: "Class A" },
 ];
 
 const initialClasses = [
@@ -47,6 +53,30 @@ function showPage(pageId, event) {
     event.target.classList.add('active');
 }
 
+// 分页的通用函数
+function paginate(dataArray, rowsPerPage, page) {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    return dataArray.slice(start, end);
+}
+
+function setupPagination(dataArray, rowsPerPage, containerId, renderFunc) {
+    const totalPages = Math.ceil(dataArray.length / rowsPerPage);
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.innerText = i;
+        button.classList.add('pagination-btn');
+        button.addEventListener('click', () => {
+            const paginatedData = paginate(dataArray, rowsPerPage, i);
+            renderFunc(paginatedData);
+        });
+        container.appendChild(button);
+    }
+}
+
 /* 学生管理 */
 function showAddStudentForm() {
     document.getElementById('add-student-form').style.display = 'block';
@@ -64,13 +94,14 @@ function addStudent() {
         class: className
     };
     students.push(newStudent);
-    renderStudents();
+    renderStudents(paginate(students, 5, 1));
 }
 
-function renderStudents() {
+// 修改渲染函数为分页
+function renderStudents(paginatedStudents = paginate(students, 5, 1)) {
     const tbody = document.getElementById('student-table-body');
     tbody.innerHTML = '';
-    students.forEach(student => {
+    paginatedStudents.forEach(student => {
         const row = `<tr>
                         <td>${student.id}</td>
                         <td>${student.name}</td>
@@ -80,11 +111,12 @@ function renderStudents() {
                      </tr>`;
         tbody.innerHTML += row;
     });
+    setupPagination(students, 5, 'student-pagination', renderStudents);
 }
 
 function deleteStudent(id) {
     students = students.filter(student => student.id !== id);
-    renderStudents();
+    renderStudents(paginate(students, 5, 1));
 }
 
 /* 班级管理 */
