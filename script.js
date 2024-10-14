@@ -228,3 +228,106 @@ function stopResize() {
     document.removeEventListener('mousemove', resize);
     document.removeEventListener('mouseup', stopResize);
 }
+
+
+/* 学生搜索功能 */
+function searchStudent() {
+    const searchValue = document.getElementById('student-search').value.toLowerCase();
+    const filteredStudents = students.filter(student =>
+        student.name.toLowerCase().includes(searchValue) ||
+        student.class.toLowerCase().includes(searchValue)
+    );
+    renderFilteredStudents(filteredStudents);
+}
+
+function renderFilteredStudents(filteredStudents) {
+    const tbody = document.getElementById('student-table-body');
+    tbody.innerHTML = '';
+    filteredStudents.forEach(student => {
+        const row = `<tr>
+                        <td>${student.id}</td>
+                        <td>${student.name}</td>
+                        <td>${student.age}</td>
+                        <td>${student.class}</td>
+                        <td><button onclick="deleteStudent(${student.id})">Delete</button></td>
+                     </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+/* 班级搜索功能 */
+function searchClass() {
+    const searchValue = document.getElementById('class-search').value.toLowerCase();
+    const filteredClasses = classes.filter(cls =>
+        cls.className.toLowerCase().includes(searchValue) ||
+        cls.teacher.toLowerCase().includes(searchValue)
+    );
+    renderFilteredClasses(filteredClasses);
+}
+
+function renderFilteredClasses(filteredClasses) {
+    const tbody = document.getElementById('class-table-body');
+    tbody.innerHTML = '';
+    filteredClasses.forEach(cls => {
+        const row = `<tr>
+                        <td>${cls.id}</td>
+                        <td>${cls.className}</td>
+                        <td>${cls.teacher}</td>
+                        <td>${cls.studentsCount}</td>
+                        <td><button onclick="deleteClass(${cls.id})">Delete</button></td>
+                     </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+/* 教师搜索功能 */
+function searchTeacher() {
+    const searchValue = document.getElementById('teacher-search').value.toLowerCase();
+    const filteredTeachers = teachers.filter(teacher =>
+        teacher.name.toLowerCase().includes(searchValue) ||
+        teacher.subject.toLowerCase().includes(searchValue) ||
+        teacher.class.toLowerCase().includes(searchValue)
+    );
+    renderFilteredTeachers(filteredTeachers);
+}
+
+function renderFilteredTeachers(filteredTeachers) {
+    const tbody = document.getElementById('teacher-table-body');
+    tbody.innerHTML = '';
+    filteredTeachers.forEach(teacher => {
+        const row = `<tr>
+                        <td>${teacher.id}</td>
+                        <td>${teacher.name}</td>
+                        <td>${teacher.subject}</td>
+                        <td>${teacher.class}</td>
+                        <td><button onclick="deleteTeacher(${teacher.id})">Delete</button></td>
+                     </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+/* 管理员搜索功能 */
+function searchAdmin() {
+    const searchValue = document.getElementById('admin-search').value.toLowerCase();
+    const filteredAdmins = admins.filter(admin =>
+        admin.name.toLowerCase().includes(searchValue) ||
+        admin.role.toLowerCase().includes(searchValue) ||
+        admin.email.toLowerCase().includes(searchValue)
+    );
+    renderFilteredAdmins(filteredAdmins);
+}
+
+function renderFilteredAdmins(filteredAdmins) {
+    const tbody = document.getElementById('admin-table-body');
+    tbody.innerHTML = '';
+    filteredAdmins.forEach(admin => {
+        const row = `<tr>
+                        <td>${admin.id}</td>
+                        <td>${admin.name}</td>
+                        <td>${admin.role}</td>
+                        <td>${admin.email}</td>
+                        <td><button onclick="deleteAdmin(${admin.id})">Delete</button></td>
+                     </tr>`;
+        tbody.innerHTML += row;
+    });
+}

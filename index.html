@@ -30,6 +30,7 @@
         <div id="student-management" class="page">
             <h1>Student Management</h1>
             <button onclick="showAddStudentForm()">Add Student</button>
+            <input type="text" id="student-search" placeholder="搜索学生..." onkeyup="searchStudent()">
             <table>
                 <thead>
                 <tr>
@@ -60,6 +61,8 @@
         <div id="class-management" class="page">
             <h1>Class Management</h1>
             <button onclick="showAddClassForm()">Add Class</button>
+            <input type="text" id="class-search" placeholder="搜索班级..." onkeyup="searchClass()">
+
             <table>
                 <thead>
                 <tr>
@@ -88,6 +91,8 @@
         <div id="teacher-management" class="page">
             <h1>Teacher Management</h1>
             <button onclick="showAddTeacherForm()">Add Teacher</button>
+            <input type="text" id="teacher-search" placeholder="搜索教师..." onkeyup="searchTeacher()">
+
             <table>
                 <thead>
                 <tr>
@@ -118,6 +123,8 @@
         <div id="admin-management" class="page">
             <h1>Admin Management</h1>
             <button onclick="showAddAdminForm()">Add Admin</button>
+            <input type="text" id="admin-search" placeholder="搜索管理员..." onkeyup="searchAdmin()">
+
             <table>
                 <thead>
                 <tr>
