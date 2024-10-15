@@ -148,3 +148,34 @@ input[type="text"]:focus {
 .page {
     padding: 20px;
 }
+
+/* 分页样式 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination button:focus {
+    outline: none;
+}
+
+.pagination button.active {
+    background-color: #0056b3;
+}

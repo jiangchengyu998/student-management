@@ -135,13 +135,13 @@ function addClass() {
         studentsCount: 0
     };
     classes.push(newClass);
-    renderClasses();
+    renderClasses(paginate(classes, 5, 1));
 }
 
-function renderClasses() {
+function renderClasses(paginatedClasses = paginate(classes, 5, 1)) {
     const tbody = document.getElementById('class-table-body');
     tbody.innerHTML = '';
-    classes.forEach(cls => {
+    paginatedClasses.forEach(cls => {
         const row = `<tr>
                         <td>${cls.id}</td>
                         <td>${cls.className}</td>
@@ -151,11 +151,12 @@ function renderClasses() {
                      </tr>`;
         tbody.innerHTML += row;
     });
+    setupPagination(classes, 5, 'class-pagination', renderClasses);
 }
 
 function deleteClass(id) {
     classes = classes.filter(cls => cls.id !== id);
-    renderClasses();
+    renderClasses(paginate(classes, 5, 1));
 }
 
 /* 教师管理 */
@@ -175,13 +176,13 @@ function addTeacher() {
         class: className
     };
     teachers.push(newTeacher);
-    renderTeachers();
+    renderTeachers(paginate(teachers, 5, 1));
 }
 
-function renderTeachers() {
+function renderTeachers(paginatedTeachers = paginate(teachers, 5, 1)) {
     const tbody = document.getElementById('teacher-table-body');
     tbody.innerHTML = '';
-    teachers.forEach(teacher => {
+    paginatedTeachers.forEach(teacher => {
         const row = `<tr>
                         <td>${teacher.id}</td>
                         <td>${teacher.name}</td>
@@ -191,11 +192,12 @@ function renderTeachers() {
                      </tr>`;
         tbody.innerHTML += row;
     });
+    setupPagination(teachers, 5, 'teacher-pagination', renderTeachers);
 }
 
 function deleteTeacher(id) {
     teachers = teachers.filter(teacher => teacher.id !== id);
-    renderTeachers();
+    renderTeachers(paginate(teachers, 5, 1));
 }
 
 /* 管理员管理 */
@@ -215,13 +217,13 @@ function addAdmin() {
         email: email
     };
     admins.push(newAdmin);
-    renderAdmins();
+    renderAdmins(paginate(admins, 5, 1));
 }
 
-function renderAdmins() {
+function renderAdmins(paginatedAdmins = paginate(admins, 5, 1)) {
     const tbody = document.getElementById('admin-table-body');
     tbody.innerHTML = '';
-    admins.forEach(admin => {
+    paginatedAdmins.forEach(admin => {
         const row = `<tr>
                         <td>${admin.id}</td>
                         <td>${admin.name}</td>
@@ -231,11 +233,12 @@ function renderAdmins() {
                      </tr>`;
         tbody.innerHTML += row;
     });
+    setupPagination(admins, 5, 'admin-pagination', renderAdmins);
 }
 
 function deleteAdmin(id) {
     admins = admins.filter(admin => admin.id !== id);
-    renderAdmins();
+    renderAdmins(paginate(admins, 5, 1));
 }
 
 
