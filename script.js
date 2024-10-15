@@ -388,3 +388,22 @@ function renderFilteredAdmins(filteredAdmins) {
         tbody.innerHTML += row;
     });
 }
+
+// 模拟管理员信息
+const admin = {
+    name: '张管理员', // 假设的管理员名字
+    email: 'admin@example.com'
+};
+
+// 页面加载时显示管理员信息
+document.addEventListener("DOMContentLoaded", () => {
+    const adminNameElement = document.querySelector('.admin-name');
+    adminNameElement.innerText = `当前登录：${admin.name}`;
+});
+
+// 注销功能
+function logout() {
+    alert('管理员已注销');
+    // 注销逻辑，例如跳转到登录页面
+}
+

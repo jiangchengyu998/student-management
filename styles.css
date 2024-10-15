@@ -187,3 +187,48 @@ input[type="text"]:focus {
     font-size: 14px;
     color: #555;
 }
+
+/* 顶部导航栏 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007BFF;
+    padding: 15px;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* 管理员信息显示区域样式 */
+.admin-info {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.admin-info span {
+    margin-right: 10px;
+}
+
+.admin-info button {
+    background-color: white;
+    color: #007BFF;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.admin-info button:hover {
+    background-color: #f0f0f0;
+}
+
+.admin-info button:focus {
+    outline: none;
+}
