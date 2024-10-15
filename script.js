@@ -53,25 +53,47 @@ function showPage(pageId, event) {
     event.target.classList.add('active');
 }
 
-// 分页的通用函数
+// 分页的通用函数，更新了当前页码与总数显示
 function paginate(dataArray, rowsPerPage, page) {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
     return dataArray.slice(start, end);
 }
 
-function setupPagination(dataArray, rowsPerPage, containerId, renderFunc) {
+function setupPagination(dataArray, rowsPerPage, containerId, paginationInfoId, renderFunc) {
     const totalPages = Math.ceil(dataArray.length / rowsPerPage);
     const container = document.getElementById(containerId);
+    const paginationInfo = document.getElementById(paginationInfoId);
     container.innerHTML = '';
+
+    let currentPage = 1;
+
+    function updatePaginationInfo() {
+        const start = (currentPage - 1) * rowsPerPage + 1;
+        const end = Math.min(currentPage * rowsPerPage, dataArray.length);
+        paginationInfo.innerHTML = `显示第 ${start} 条到第 ${end} 条，共 ${dataArray.length} 条数据`;
+    }
+
+    updatePaginationInfo();
 
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement('button');
         button.innerText = i;
         button.classList.add('pagination-btn');
+        if (i === currentPage) {
+            button.classList.add('active');
+        }
         button.addEventListener('click', () => {
-            const paginatedData = paginate(dataArray, rowsPerPage, i);
+            currentPage = i;
+            const paginatedData = paginate(dataArray, rowsPerPage, currentPage);
             renderFunc(paginatedData);
+            updatePaginationInfo();
+
+            // 更新按钮状态
+            document.querySelectorAll(`#${containerId} .pagination-btn`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
         });
         container.appendChild(button);
     }
@@ -111,7 +133,7 @@ function renderStudents(paginatedStudents = paginate(students, 5, 1)) {
                      </tr>`;
         tbody.innerHTML += row;
     });
-    setupPagination(students, 5, 'student-pagination', renderStudents);
+    setupPagination(students, 5, 'student-pagination', 'student-pagination-info', renderStudents);
 }
 
 function deleteStudent(id) {
@@ -151,7 +173,7 @@ function renderClasses(paginatedClasses = paginate(classes, 5, 1)) {
                      </tr>`;
         tbody.innerHTML += row;
     });
-    setupPagination(classes, 5, 'class-pagination', renderClasses);
+    setupPagination(classes, 5, 'class-pagination', 'class-pagination-info', renderClasses);
 }
 
 function deleteClass(id) {
@@ -192,7 +214,7 @@ function renderTeachers(paginatedTeachers = paginate(teachers, 5, 1)) {
                      </tr>`;
         tbody.innerHTML += row;
     });
-    setupPagination(teachers, 5, 'teacher-pagination', renderTeachers);
+    setupPagination(teachers, 5, 'teacher-pagination', 'teacher-pagination-info', renderTeachers);
 }
 
 function deleteTeacher(id) {
@@ -233,7 +255,7 @@ function renderAdmins(paginatedAdmins = paginate(admins, 5, 1)) {
                      </tr>`;
         tbody.innerHTML += row;
     });
-    setupPagination(admins, 5, 'admin-pagination', renderAdmins);
+    setupPagination(admins, 5, 'admin-pagination', 'admin-pagination-info', renderAdmins);
 }
 
 function deleteAdmin(id) {
