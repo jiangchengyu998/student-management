@@ -398,12 +398,14 @@ const admin = {
 // 页面加载时显示管理员信息
 document.addEventListener("DOMContentLoaded", () => {
     const adminNameElement = document.querySelector('.admin-name');
-    adminNameElement.innerText = `当前登录：${admin.name}`;
+    adminNameElement.innerText = `当前登录：${sessionStorage.getItem("userName")}`;
 });
 
 // 注销功能
 function logout() {
-    alert('管理员已注销');
-    // 注销逻辑，例如跳转到登录页面
+    // 清除登录状态
+    sessionStorage.removeItem('loggedIn');
+    // 跳转到登录页面
+    window.location.href = 'login.html';
 }
 
