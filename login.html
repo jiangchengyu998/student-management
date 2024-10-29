@@ -10,23 +10,26 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.min.js">
 </head>
 <body>
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="border rounded p-5 shadow" style="width: 400px;">
-        <h2 class="text-center">管理员登录</h2>
-        <form id="login-form" onsubmit="handleLogin(event)">
-            <div class="mb-4">
-                <label class="form-label fw-bold" for="username">用户名</label>
-                <input class="form-control" type="text" id="username" name="username" placeholder="请输入用户名" required>
-            </div>
-            <div class="mb-4">
-                <label class="form-label fw-bold" for="password">密码</label>
-                <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block btn-lg" style="width: 300px">登录</button>
-        </form>
-        <div id="error-message" class="error-message text-danger"></div>
+<div class="container-fluid bg-light" style="min-height: 100vh;">
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="border rounded p-5 shadow" style="width: 400px;">
+            <h2 class="text-center">管理员登录</h2>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label class="form-label fw-bold" for="username">用户名</label>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="请输入用户名" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold" for="password">密码</label>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-lg" style="width: 300px;">登录</button>
+            </form>
+            <div id="error-message" class="error-message text-danger"></div>
+        </div>
     </div>
 </div>
+
 
 
 <script src="login.js"></script>
